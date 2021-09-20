@@ -1,44 +1,34 @@
 package Domain;
 
 import Base.BaseEntity;
+import lombok.Getter;
+import lombok.Setter;
 
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import java.util.UUID;
+import javax.persistence.*;
 
 @Entity
-public class Customer extends BaseEntity<Long> {
+@Getter
+@Setter
+
+public class Customer {
     @Column(name = "first_name", nullable = false)
     private String firstName;
 
     @Column(name = "last_name", nullable = false)
     private String lastName;
-
+//    @Id
     @Column(name = "customer_number", unique = true)
-    private UUID customerNumber;
+    @GeneratedValue(
+            strategy =GenerationType.TABLE ,
+            generator = "customer_uid_seq")
+    @SequenceGenerator(
+            name = "customer_uid_seq",
+            sequenceName = "customer_uid_gen"
+            , allocationSize = 452_386
+            ,initialValue = 1_001_507_092
+    )
+        private Long customerNumber;
 
-    public UUID getCustomerNumber() {
-        return customerNumber;
-    }
 
-    public void setCustomerNumber(UUID customerNumber) {
-        this.customerNumber = customerNumber;
-    }
 
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
 }
