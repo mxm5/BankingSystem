@@ -1,4 +1,4 @@
-package Base;
+package Base.Entity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -6,15 +6,16 @@ import lombok.Setter;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import java.io.Serializable;
 
 @MappedSuperclass
 @Getter
 @Setter
-public class BaseEntity<ID> {
+public class BaseEntity<ID extends Serializable> {
 
     @Id
     @GeneratedValue
-    ID id;
+    protected ID id;
 
 
 }

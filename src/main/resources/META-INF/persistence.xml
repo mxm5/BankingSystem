@@ -5,7 +5,12 @@
              version="3.0">
     <persistence-unit name="BankingSystem">
 
-
+        <class>Domain.CreditCard</class>
+        <class>Domain.BankAccount</class>
+        <class>Domain.Branch</class>
+        <class>Domain.Customer</class>
+        <class>Domain.BankEmployee</class>
+        <class>Domain.Transaction</class>
 
         <properties>
             <!-- Driver for DB database -->

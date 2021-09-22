@@ -1,4 +1,4 @@
-package Base;
+package Base.Entity;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -16,11 +16,18 @@ public class BasePerson extends BaseEntity<Long> {
     public static final String COLUMN_FIRSTNAME_NAME = "first_name";
 
     @Column(name = COLUMN_FIRSTNAME_NAME, nullable = false)
-    private String firstName;
+    protected String firstName;
+
+    public String getFullName(){
+        return getFirstName()+" "+getLastName();
+    }
 
     @Column(name = COLUMN_LASTNAME_NAME, nullable = false)
-    private String lastName;
+    protected String lastName;
 
     @Column(name = COLUMN_NATIONAL_CODE_NAME, nullable = false, unique = true, updatable = false)
-    private Long nationalCode;
+    protected Long nationalCode;
+
+
+
 }
