@@ -1,17 +1,17 @@
 package Base.Service;
 
 import Base.Entity.BaseEntity;
+import utils.Exceptions.EntityNotFoundException;
 
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.Optional;
 
 public interface ServiceApi<E extends BaseEntity<ID>, ID extends Serializable> {
     void save(E e) throws Exception;
 
-    void delete(E e);
+    void delete(E e) throws EntityNotFoundException;
 
-    Optional<E> getById(ID id);
+    E getById(ID id) throws Exception;
 
     Collection<E> getAll();
 

@@ -13,6 +13,7 @@ import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Random;
 import java.util.Set;
 
 
@@ -28,10 +29,12 @@ public class BankAccount extends BaseEntity<Long> {
     // A accountNumber
     // R outgoingTransactions
     // R incomingTransactions
+    // accountPassword
     public static final String COLUMN_BALANCE_NAME = "balance";
     public static final String COLUMN_IS_ACTIVE_NAME = "is_active";
     public static final String COLUMN_CREATION_DATE_NAME = "creation_date";
     public static final String COLUMN_ACCOUNT_NUMBER_NAME = "account_number";
+    public static final String COLUMN_ACCOUNT_PASSWORD_NAME = "account_password";
 
     public BankAccount(Customer owner) {
         this.owner = owner;
@@ -49,7 +52,7 @@ public class BankAccount extends BaseEntity<Long> {
     @Column(name = COLUMN_CREATION_DATE_NAME, nullable = false, updatable = false)
     private Timestamp creationDate;
     @Column(name = COLUMN_ACCOUNT_NUMBER_NAME, nullable = false, unique = true, updatable = false)
-    private Long accountNumber;
+    private Long accountNumber=new UID().getNew();
     @OrderBy("transactionAccomplishmentTime desc")
     @OneToMany(mappedBy = "senderBankAccount", orphanRemoval = true)
     private Set<Transaction> outgoingTransactions = new HashSet<>();
@@ -61,10 +64,12 @@ public class BankAccount extends BaseEntity<Long> {
     @JoinColumn(name = "credit_card_id", unique = true)
     private CreditCard creditCard;
 
+    @Column(name = COLUMN_ACCOUNT_PASSWORD_NAME, nullable = false)
+    private Long accountPassword= ((long) new Random().nextInt(100, 9999));
 
     @PrePersist
     public void prePersist() {
-        setAccountNumber(new UID().getNew());
+
         setCreationDate(new Time().now());
 
 

@@ -9,7 +9,7 @@ import javax.persistence.MappedSuperclass;
 @MappedSuperclass
 @Getter
 @Setter
-public class BasePerson extends BaseEntity<Long> {
+public class Person extends BaseEntity<Long> {
 
     public static final String COLUMN_NATIONAL_CODE_NAME = "national_code";
     public static final String COLUMN_LASTNAME_NAME = "last_name";

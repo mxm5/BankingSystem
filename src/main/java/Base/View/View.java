@@ -100,6 +100,7 @@ public class View implements PageApi {
         val = new Scanner(System.in).nextLine();
         return val;
     }
+
     @Override
     public String enterLine280(String msg) {
         String val="";

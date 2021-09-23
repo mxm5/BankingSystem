@@ -1,6 +1,6 @@
 package Domain;
 
-import Base.Entity.BasePerson;
+import Base.Entity.Person;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,7 +15,7 @@ import java.util.Random;
 @Setter
 @Getter
 @NoArgsConstructor
-public class BankEmployee extends BasePerson {
+public class BankEmployee extends Person {
     public static final String COLUMN_EMPLOYEE_NUMBER_NAME = "employee_number";
     public static final String COLUMN_EMPLOYEE_PASSWORD_NAME = "employee_password";
 
@@ -33,21 +33,22 @@ public class BankEmployee extends BasePerson {
         this.hiringBranch = hiringBranch;
     }
 
+    public BankEmployee(Long employeeNumber, String employeePassword) {
+        this.employeeNumber = employeeNumber;
+        this.employeePassword = employeePassword;
+    }
+
     @Column(name = COLUMN_EMPLOYEE_NUMBER_NAME, nullable = false, unique = true, updatable = false)
-    private Long employeeNumber;
+    private Long employeeNumber=new UID().getNew();
 
     @Column(name = COLUMN_EMPLOYEE_PASSWORD_NAME, nullable = false)
-    private String employeePassword;
+    private String employeePassword=String.valueOf(new Random().nextInt(1000000, 9999999));
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, optional = false)
     @JoinColumn(name = "hiring_branch_id", nullable = false)
     private Branch hiringBranch;
 
-    @PrePersist
-    public void prePersist() {
-        setEmployeeNumber(new UID().getNew());
-        setEmployeePassword(String.valueOf(new Random().nextInt(1000000, 9999999)));
-    }
+
 
 
     @Override

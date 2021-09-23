@@ -2,10 +2,10 @@ package Base.Service;
 
 import Base.Entity.BaseEntity;
 import Base.Repository.Repository;
+import utils.Exceptions.EntityNotFoundException;
 
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.Optional;
 
 public class
 Service<E extends BaseEntity<ID>, ID extends Serializable, R extends Repository<E, ID>>
@@ -27,12 +27,12 @@ Service<E extends BaseEntity<ID>, ID extends Serializable, R extends Repository<
     }
 
     @Override
-    public void delete(E e) {
+    public void delete(E e) throws EntityNotFoundException {
         repository.delete(e);
     }
 
     @Override
-    public Optional<E> getById(ID id) {
+    public E getById(ID id) throws Exception {
         return repository.getById(id);
     }
 

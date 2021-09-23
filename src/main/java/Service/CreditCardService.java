@@ -12,12 +12,13 @@ public class CreditCardService extends Service<CreditCard, Long, CreditCardRepos
         super(repository);
     }
 
-
+    //todo set a transaction validated
     @Override
     public void sendFromCardToOtherCard() {
 
     }
 
+    //todo set a new password only for card
     @Override
     public void setPassword() {
 

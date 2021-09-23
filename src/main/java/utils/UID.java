@@ -5,7 +5,7 @@ import java.nio.ByteBuffer;
 import java.util.UUID;
 
 public class UID {
-    public Long getNew() {
+    public  Long getNew() {
         long val = -1;
         do {
             final UUID uid = UUID.randomUUID();
@@ -18,4 +18,6 @@ public class UID {
         while (val < 0);
         return val;
     }
+
+
 }

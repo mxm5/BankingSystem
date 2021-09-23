@@ -1,21 +1,25 @@
 package Base.Repository;
 
 import Base.Entity.BaseEntity;
+import utils.Exceptions.EntityNotFoundException;
 
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.Optional;
 
 public interface RepositoryApi<E extends BaseEntity<ID>,ID extends Serializable> {
-    Optional<E> getById(ID id);//todo validation
+    E getById(ID id) throws Exception;
 
     void save(E e) throws Exception;
-    // todo validation update must be separate from persist
 
-    void delete(E e); // todo validation
+
+    void update(E e) throws Exception;
+
+    void delete(E e) throws EntityNotFoundException;
 
     Collection<E> getAll();
 
     Collection<E> getChunkOfAll(int chunkSize, int chunkCount);
+
+    String name();
 
 }

@@ -1,6 +1,6 @@
 package Domain;
 
-import Base.Entity.BasePerson;
+import Base.Entity.Person;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,7 +18,13 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Customer extends BasePerson {
+public class Customer extends Person {
+    {
+
+        this.bankAccounts.add(
+                new BankAccount(this)
+        );
+    }
     //C registeringBranch
     //A customerNumber
     //C bankAccount
@@ -30,7 +36,7 @@ public class Customer extends BasePerson {
     @PrePersist
     private void setUniqueCustomerNumber() throws Exception {
         setJoinDate(new Time().now());
-        setCustomerNumber(new UID().getNew());
+
         if(bankAccounts.size()==0) throw new Exception("user has no bank account");
 
     }
@@ -50,7 +56,7 @@ public class Customer extends BasePerson {
     private Branch registeringBranch;
 
     @Column(name = COLUMN_CUSTOMER_NUMBER_NAME, nullable = false, unique = true, updatable = false)
-    private Long customerNumber;
+    private Long customerNumber = new UID().getNew();
 
     @OneToMany(mappedBy = "owner", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE}, orphanRemoval = true)
     private Set<BankAccount> bankAccounts = new HashSet<>();
