@@ -42,7 +42,12 @@ public class BankEmployee extends Person {
     private Long employeeNumber=new UID().getNew();
 
     @Column(name = COLUMN_EMPLOYEE_PASSWORD_NAME, nullable = false)
-    private String employeePassword=String.valueOf(new Random().nextInt(1000000, 9999999));
+    private String employeePassword;
+
+    {
+        Random random = new Random();
+        employeePassword = String.valueOf(random.nextInt( 9999999));
+    }
 
     @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, optional = false)
     @JoinColumn(name = "hiring_branch_id", nullable = false)

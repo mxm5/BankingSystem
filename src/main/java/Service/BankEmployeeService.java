@@ -27,16 +27,12 @@ public class BankEmployeeService extends Service<BankEmployee, Long, BankEmploye
     }
 
     @Override
-    public Customer registerANewCustomer(
-            String fName,
-            String lName,
-            long nCode
-    ) throws Exception {
+    public Customer registerANewCustomer(String fName, String lName, long nCode) throws Exception {
         Customer customer = new Customer(
                 fName,
                 lName,
                 nCode,
-                ((BankEmployee) Services.loggedUser).getHiringBranch()
+                Services.getUserBranch()
         );
         customerRepository.save(
                 customer

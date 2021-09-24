@@ -9,6 +9,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -45,7 +46,7 @@ class MainApplicationTest {
             entityManager.persist(aliabad);
             Customer customer = new Customer("mohammad", "mohammadian", 27040903499L, aliabad);
             entityManager.persist(customer);
-            List<BankAccount> bankAccounts = customer.getBankAccounts().stream().toList();
+            List<BankAccount> bankAccounts = customer.getBankAccounts().stream().collect(Collectors.toList());
             BankAccount bankAccount = bankAccounts.get(0);
             entityManager.persist(bankAccount);
             CreditCard creditCard = new CreditCard();

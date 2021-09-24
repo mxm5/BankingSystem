@@ -65,7 +65,7 @@ public class BankAccount extends BaseEntity<Long> {
     private CreditCard creditCard;
 
     @Column(name = COLUMN_ACCOUNT_PASSWORD_NAME, nullable = false)
-    private Long accountPassword= ((long) new Random().nextInt(100, 9999));
+    private Long accountPassword= ((long) new Random().nextInt( 9999));
 
     @PrePersist
     public void prePersist() {

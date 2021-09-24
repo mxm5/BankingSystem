@@ -39,7 +39,7 @@ public class CreditCard extends BaseEntity<Long> {
         setCardNumber(new UID().getNew());
         setExpirationDate(new Time().fourYearsFromNow());
         setCreationDate(new Time().now());
-        setCvv2(((short) new Random().nextInt(100, 9999)));
+        setCvv2(((short) new Random().nextInt( 9999)));
         if(cardFourDigitPassword==null) setCardFourDigitPassword(((short) 1111));
     }
 
