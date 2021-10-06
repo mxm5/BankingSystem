@@ -22,7 +22,8 @@
             <property name="javax.persistence.jdbc.user" value="root"/>
             <!-- Password -->
             <!-- MKuJNV+3W?%wE&D5 -->
-            <property name="javax.persistence.jdbc.password" value="MKuJNV+3W?%wE&amp;D5"/>
+            <!-- root -->
+            <property name="javax.persistence.jdbc.password" value="root"/>
             <!-- show sql queries -->
             <property name="hibernate.show_sql" value="true"/>
             <!-- format SQL -->

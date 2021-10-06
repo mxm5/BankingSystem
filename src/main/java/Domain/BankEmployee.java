@@ -46,7 +46,7 @@ public class BankEmployee extends BasePerson {
     @PrePersist
     public void prePersist() {
         setEmployeeNumber(new UID().getNew());
-        setEmployeePassword(String.valueOf(new Random().nextInt(1000000, 9999999)));
+        setEmployeePassword(String.valueOf(new Random().nextInt()));
     }
 
 
